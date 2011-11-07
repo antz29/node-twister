@@ -1,7 +1,10 @@
-var minimatch = require('minimatch');
-
+/**
+ * @api private
+ */
 function NodeRewrite() {
 	var rules = [];
+	
+	var minimatch = require('minimatch');
 
 	function matchIt(rule,uri) {
 		if (rule == uri) return true;
@@ -95,4 +98,21 @@ function NodeRewrite() {
 
 };
 
+/**
+ * Create a new rewriter instance.
+ *
+ * Examples:
+ *
+ *     var rw = require('rewrite').create();
+ *     rw.addRule( { from: '/foo' : to : '/bar' });
+ *
+ *     rw.rewrite('/foo',function(rw_uri) {
+ *       console.log(rw_uri);
+ *     });
+ *
+ *     // => /bar
+ *
+ * @return {NodeRewrite} NodeRewrite instance.
+ * @api public
+ */
 exports.create = function() { return new NodeRewrite(); };
