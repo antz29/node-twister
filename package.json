@@ -3,7 +3,7 @@
 	"name": "twister",
 	"description": "A library to manipulate URI style strings.",
 	"keywords": ["uri", "rewrite"],
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"homepage": "http://base.antz29.com/twister",
 
 	"repository": {
