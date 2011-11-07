@@ -1,9 +1,8 @@
-
 node-twister - Twist your URIs
 
 ## Installation
 
-    npm install glob
+    npm install twister
 
 ## What's it do?
 
