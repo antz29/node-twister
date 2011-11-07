@@ -3,7 +3,7 @@
 	"name": "rewrite",
 	"description": "A tool to manipulate URI style strings.",
 	"keywords": ["uri", "rewrite"],
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"homepage": "http://base.antz29.com/rewrite",
 
 	"repository": {
