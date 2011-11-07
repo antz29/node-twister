@@ -1,23 +1,23 @@
 {
 	"author": "John Le Drew <jp@antz29.com> (http://antz29.com)",
-	"name": "rewrite",
-	"description": "A tool to manipulate URI style strings.",
+	"name": "twister",
+	"description": "A library to manipulate URI style strings.",
 	"keywords": ["uri", "rewrite"],
 	"version": "0.1.1",
-	"homepage": "http://base.antz29.com/rewrite",
+	"homepage": "http://base.antz29.com/twister",
 
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/antz29/node-rewrite.git"
+		"url": "git://github.com/antz29/node-twister.git"
 	},
 
    	"bugs": {
         	"email": "base-bugs@antz29.com",
-	        "url": "http://github.com/antz29/node-rewrite/issues"
+	        "url": "http://github.com/antz29/node-twister/issues"
     	},
 
 	"engines": {
-		"node": "~0.4.9"
+		"node": ">=0.6.0"
 	},
 
 	"directories": {
