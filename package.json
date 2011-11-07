@@ -23,7 +23,7 @@
         	"lib": "./src/lib"
 	},
 
-	"main" : "./src/lib/rewrite.js",
+	"main" : "./src/lib/twister.js",
 
 	"dependencies": {
 		"minimatch" : ">=0.0.4"	
