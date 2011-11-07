@@ -3,7 +3,7 @@
 	"name": "twister",
 	"description": "A library to manipulate URI style strings.",
 	"keywords": ["uri", "rewrite"],
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"homepage": "http://github.com/antz29/node-twister",
 	"repository": {
 		"type": "git",
@@ -23,7 +23,7 @@
         	"lib": "./src/lib"
 	},
 
-	"main" : "./src/lib/rewrite.js",
+	"main" : "./src/lib/twister.js",
 
 	"dependencies": {
 		"minimatch" : ">=0.0.4"	
