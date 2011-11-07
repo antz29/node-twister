@@ -40,16 +40,16 @@ useful for routing requests etc.
 * Routes can capture segments from the URI and inject into the target URL:
   * `/foo/bar/* -> /controller/action/*`
     * This will use the end of the URI matched by the `*` and replace the `*` in the target URI.  
-    * `/foo/bar/12345 -> /controller/action/12345`
-    * `/foo/bar/12345/fred -> /controller/action/12345/fred`
+      * `/foo/bar/12345 -> /controller/action/12345`
+      * `/foo/bar/12345/fred -> /controller/action/12345/fred`
   * `/foo/*/* -> /controller/*/data/*`
     * This will take each `*` in the route and map it to each `*` in the target URI respectively.
-    * `/foo/bar/12345 -> /controller/bar/data/12345`
-    * `/foo/bing/boing/bang -> /controller/bing/data/boing/bang`
+      * `/foo/bar/12345 -> /controller/bar/data/12345`
+      * `/foo/bing/boing/bang -> /controller/bing/data/boing/bang`
   * `/foo/*/* -> /controller/{2}/{1}`
     * This will take each `*` in order and map the first `*` to `{1}` the second to `{2}` etc.
-    * `/foo/pop/weasel -> /controller/weasel/pop`
-    * `/foo/egg/chicken -> /controller/chicken/egg`
+      * `/foo/pop/weasel -> /controller/weasel/pop`
+      * `/foo/egg/chicken -> /controller/chicken/egg`
 
 ## Bugs
 
