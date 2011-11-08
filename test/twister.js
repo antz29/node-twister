@@ -2,11 +2,11 @@ var assert = require('assert');
 
 var tests = {
 	'The rules will be empty initially.' : function(beforeExit, assert) {
-		var r = require('rewrite').create();
+		var r = require('twister').create();
 		assert.ok(r.getRules() == 0);	
 	},
 	'Adding one rule.' : function(beforeExit, assert) {
-		var r = require('rewrite').create();
+		var r = require('twister').create();
 
 		var rule1 = {from:'/bar',to:'/baz'};
 		var rule2 = {from:'/bop',to:'/bat'};
@@ -26,7 +26,7 @@ var tests = {
 		assert.deepEqual(rules[1], rule2);	
 	},
 	'Rules can be retrieved' : function(beforeExit, assert) {
-		var r = require('rewrite').create();
+		var r = require('twister').create();
 
 		var rule1 = {from:'/bar',to:'/baz'};
 		r.addRule(rule1);
@@ -36,7 +36,7 @@ var tests = {
 		assert.equal(rules.length,1);
 	},
 	'Add a batch of rules.' : function(beforeExit, assert) {
-		var r = require('rewrite').create();
+		var r = require('twister').create();
 	
 		var rules1 = [{from:'/bar',to:'/baz'},{from:'/bop',to:'/bat'}];
 		var rules2 = [{from:'/bing',to:'/bong'},{from:'/foo',to:'/bar'}];
@@ -56,7 +56,7 @@ var tests = {
 		assert.deepEqual(rules, rules2);		
 	},
 	'Rules can be cleared.' : function(beforeExit, assert) {
-		var r = require('rewrite').create();
+		var r = require('twister').create();
 		
 		var rules = [{from:'/bar',to:'/baz'},{from:'/bop',to:'/bat'}];
 
@@ -132,7 +132,7 @@ module.exports = tests;
 function matchTest(from,to,uris) {
 	var uri, expected, desc;
 
-	var r = require('rewrite').create();
+	var r = require('twister').create();
 	r.addRule({from:from,to:to});
 
 	for (uri in uris) {
@@ -147,7 +147,7 @@ function matchTest(from,to,uris) {
 
 		tests[desc] = (function(uri,expected) { 
 			return function(beforeExit, assert) {
-				r.rewrite(uri,function(to_uri) {
+				r.twist(uri,function(to_uri) {
 					//console.log(from + ' -> ' + to + ' - ' + uri + ' -> ' + to_uri);
 					if (!expected) expected = uri;
 					assert.equal(to_uri,expected);
