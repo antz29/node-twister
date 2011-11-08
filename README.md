@@ -1,4 +1,4 @@
-node-twister - Twist your URIs
+# node-twister - Twist your URIs
 
 ## Installation
 
@@ -21,13 +21,13 @@ useful for routing requests etc.
     });
 
     // Outputs: /bar
-    tw.rewrite('/foo',function(rewrite) {
-	console.log(rewrite);
+    tw.rewrite('/foo',function(twisted) {
+	console.log(twisted);
     });
 
     // Outputs: /bop (if a URI doesn't match a rule, it is just returned as is)
-    tw.rewrite('/bop',function(rewrite) {
-	console.log(rewrite);
+    tw.rewrite('/bop',function(twisted) {
+	console.log(twisted);
     });
 
 ## Rules
