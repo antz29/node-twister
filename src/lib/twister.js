@@ -9,17 +9,17 @@ function NodeTwister() {
 		if (rule === uri) { 
 			return true; 
 		}
-		
+
 		var test_rule = rule;
-		
+
 		if (test_rule.substr(-1) === '*') {
 			test_rule += '*';
 		}
-		
+
 		if (minimatch(uri,test_rule)) {
 			return true;
 		}
-	
+
 		return false;
 	}
 
@@ -41,7 +41,7 @@ function NodeTwister() {
 
 		while (from_segments.length) {
 			from_seg = from_segments.shift();
-		
+
 			if (from_seg === '*' && from_segments.length) {
 				caps.push(uri_segments.shift());
 			}
@@ -55,14 +55,22 @@ function NodeTwister() {
 
 		while (to_segments.length) {
 			to_seg = to_segments.shift();
-	
+
 			if (to_seg === '*') {
 				out.push(caps.shift());
 			}
 			else if (to_seg.indexOf('{') !== -1) {
-				match = /\{([0-9]+)\}/.exec(to_seg);
+                            var re = /\{([0-9]+)\}/g;
+                            while(true) {
+				match = re.exec(to_seg);
+                                if (match==null)
+                                    break;
 				ind = parseInt(match[1],10) - 1;
-				out.push(to_seg.replace(match[0],caps[ind]));
+				to_seg = to_seg.replace(match[0],caps[ind]);
+                                re.lastIndex+= caps[ind].length+1;
+                            }
+                            out.push(to_seg);
+                            console.log(out);
 			}
 			else {
 				out.push(to_seg);
@@ -75,11 +83,11 @@ function NodeTwister() {
 	this.addRules = function(new_rules) {
 		rules = new_rules;
 	};
-	
+
 	this.addRule = function(rule) {
 		rules.push(rule);
 	};
-	
+
 	this.getRules = function() {
 		return rules;
 	};
@@ -95,29 +103,14 @@ function NodeTwister() {
 		if (!count) {
 			return callback(uri);
 		}
-
-		function matchRule() {
-			var rule = rules[i];
-		
-			if (matchIt(rule.from,uri)) {
-				return callback(rewriteIt(uri,rule));
-			}
-		
-			i++;
-
-			if (i < count) { 
-				process.nextTick(matchRule);
-			}
-			else {
-				return callback(uri);
-			}
-
-			return null;
-		}
-
-		matchRule();
-	};
-
+                while (i<count) {
+                    if (matchIt(rules[i].from,uri)) {
+                        return callback(rewriteIt(uri,rules[i]));
+                    }
+                    i++;
+                }
+                return callback(uri);
+        };
 }
 
 /**
