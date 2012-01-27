@@ -53,4 +53,4 @@ useful for routing requests etc.
 
 ## Bugs
 
-See <https://github.com/antz29/node-twisted/issues>.
+See <https://github.com/antz29/node-twister/issues>.
