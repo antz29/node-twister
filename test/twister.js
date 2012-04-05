@@ -1,12 +1,21 @@
 var assert = require('assert');
 
+require('coffee-script');
+
+function getTwister() {
+	var Twister = require('../')
+	return new Twister()
+}
+
 var tests = {
 	'The rules will be empty initially.' : function(beforeExit, assert) {
-		var r = require('twister').create();
+		console.log('* The rules will be empty initially.');
+		var r = getTwister()
 		assert.ok(r.getRules() == 0);	
 	},
 	'Adding one rule.' : function(beforeExit, assert) {
-		var r = require('twister').create();
+		console.log('* Adding one rule.');
+		var r = getTwister()
 
 		var rule1 = {from:'/bar',to:'/baz'};
 		var rule2 = {from:'/bop',to:'/bat'};
@@ -26,7 +35,8 @@ var tests = {
 		assert.deepEqual(rules[1], rule2);	
 	},
 	'Rules can be retrieved' : function(beforeExit, assert) {
-		var r = require('twister').create();
+		console.log('* Rules can be retrieved');
+		var r = getTwister()
 
 		var rule1 = {from:'/bar',to:'/baz'};
 		r.addRule(rule1);
@@ -36,7 +46,8 @@ var tests = {
 		assert.equal(rules.length,1);
 	},
 	'Add a batch of rules.' : function(beforeExit, assert) {
-		var r = require('twister').create();
+		console.log('* Add a batch of rules.');
+		var r = getTwister()
 	
 		var rules1 = [{from:'/bar',to:'/baz'},{from:'/bop',to:'/bat'}];
 		var rules2 = [{from:'/bing',to:'/bong'},{from:'/foo',to:'/bar'}];
@@ -56,7 +67,8 @@ var tests = {
 		assert.deepEqual(rules, rules2);		
 	},
 	'Rules can be cleared.' : function(beforeExit, assert) {
-		var r = require('twister').create();
+		console.log('* Rules can be cleared.');
+		var r = getTwister()
 		
 		var rules = [{from:'/bar',to:'/baz'},{from:'/bop',to:'/bat'}];
 
@@ -127,17 +139,23 @@ matchTest('/foo/*/*','/controller/{2}/{1}',{
 	'/foo/egg/chicken' : '/controller/chicken/egg'
 });
 
+// https://github.com/antz29/node-twister/pull/1
+matchTest('/a/b/*/*/*','/a/b?x={1}&y={2}&z={3}',{
+	'/a/b/c/d/e' : '/a/b?x=c&y=d&z=e'
+});
+
 module.exports = tests;
 
 function matchTest(from,to,uris) {
+
 	var uri, expected, desc;
 
-	var r = require('twister').create();
+	var r = getTwister()
 	r.addRule({from:from,to:to});
 
 	for (uri in uris) {
 		expected = uris[uri];
-				
+
 		if (expected === false) {
 			desc = 'The rule ' + from + ' -> ' + to + ' does not match the uri ' + uri;
 		}	
@@ -148,7 +166,7 @@ function matchTest(from,to,uris) {
 		tests[desc] = (function(uri,expected) { 
 			return function(beforeExit, assert) {
 				r.twist(uri,function(to_uri) {
-					//console.log(from + ' -> ' + to + ' - ' + uri + ' -> ' + to_uri);
+					console.log('* ' + from + ' -> ' + to + ' - ' + uri + ' -> ' + to_uri + ' == ' + expected);
 					if (!expected) expected = uri;
 					assert.equal(to_uri,expected);
 				});

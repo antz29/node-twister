@@ -10,9 +10,12 @@ It allows you to rewrite URIs using a simple syntax. This can be
 useful for routing requests etc.
 
 ## Usage
-
+    
+    // Load the Twister module
+    var Twister = require("twister");
+  
     // Create a new rewriter (you can have multiple rewriter instances that are independant of one another)
-    var tw = require("twister").create();
+    var tw = new Twister();
 
     // Add a rule that will map the URI /foo to /bar.
     tw.addRule({
@@ -22,12 +25,12 @@ useful for routing requests etc.
 
     // Outputs: /bar
     tw.rewrite('/foo',function(twisted) {
-	console.log(twisted);
+      console.log(twisted);
     });
 
     // Outputs: /bop (if a URI doesn't match a rule, it is just returned as is)
     tw.rewrite('/bop',function(twisted) {
-	console.log(twisted);
+      console.log(twisted);
     });
 
 ## Rules
@@ -50,7 +53,8 @@ useful for routing requests etc.
     * This will take each `*` in order and map the first `*` to `{1}` the second to `{2}` etc.
       * `/foo/pop/weasel -> /controller/weasel/pop`
       * `/foo/egg/chicken -> /controller/chicken/egg`
+      * `/a/b/*/*/* -> /a/b?x={1}&y={2}&z={3}`
 
 ## Bugs
 
-See <https://github.com/antz29/node-twisted/issues>.
+See <https://github.com/antz29/node-twister/issues>.
