@@ -3,7 +3,7 @@
 	"name": "twister",
 	"description": "A library to manipulate URI style strings.",
 	"keywords": ["uri", "rewrite"],
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"homepage": "http://github.com/antz29/node-twister",
 	"repository": {
 		"type": "git",
