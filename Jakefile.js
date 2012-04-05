@@ -1,7 +1,7 @@
 var exec = require('child_process').exec;
 
 desc('This is the default task.');
-task('default', ['lint','test'], function (params) {
+task('default', ['test'], function (params) {
   
 });
 
